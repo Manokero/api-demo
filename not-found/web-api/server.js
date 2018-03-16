@@ -44,10 +44,9 @@ app.post('/signup', function(req, res) {
     let lastName = req.body.lastName;
     let email = req.email.email;
     let password = req.body.password;
-    
+
 })
 
-// app.use('/api',)
 
 app.listen(PORT, function() {
     console.log(`Magic is on ${PORT}`)
