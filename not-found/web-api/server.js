@@ -2,6 +2,7 @@ const mysql = require('mysql');
 const express = require('express');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
+const cors = require('cors')
 
 const middelware = require('./middelware')
 const dbConfig = require('../config/db.config')
@@ -15,6 +16,7 @@ let responseJson = {
     status: 0
 }
 
+app.use(cors())
 app.use(bodyParser.urlencoded({
     extended: true
 }));
