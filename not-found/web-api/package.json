@@ -14,6 +14,7 @@
     "helmet": "3.12.0",
     "jwt-simple": "0.5.1",
     "moment": "2.21.0",
-    "mysql": "2.15.0"
+    "mysql": "2.15.0",
+    "node-mysql": "0.4.2"
   }
 }

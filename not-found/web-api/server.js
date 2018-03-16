@@ -54,12 +54,16 @@ app.post('/signup', function(req, res) {
     con.connect(function (err) {
         if (err) throw err;
         console.log("Connected!");
-        var sql = `INSERT INTO users (name, lastName, email, password) VALUES ('${username}', '${lastName}', '${email}', '${password}')`;
-        con.query(sql, function (err, result) {
-            if (err) throw err;
-            res.json({message: "1 record inserted"});
-        });
     });
+
+    let sql = `INSERT INTO users (name, lastName, email, password) VALUES ('${username}', '${lastName}', '${email}', '${password}')`;
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        res.json({message: "1 record inserted"});
+    });
+
+    con.end();
+
 })
 
 
