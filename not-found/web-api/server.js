@@ -57,7 +57,7 @@ app.post('/signup', function(req, res) {
         var sql = `INSERT INTO users (name, lastName, email, password) VALUES ('${username}', '${lastName}', '${email}', '${password}')`;
         con.query(sql, function (err, result) {
             if (err) throw err;
-            console.log("1 record inserted");
+            res.json({message: "1 record inserted"});
         });
     });
 })
