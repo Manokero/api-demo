@@ -48,9 +48,9 @@ app.post('/login', middelware.ensureAuthenticated, function(req, res){
 })
 
 app.post('/signup', function(req, res) {
-    let username = req.body.name;
+    let firstName = req.body.firstName;
     let lastName = req.body.lastName;
-    let email = req.email.email;
+    let email = req.body.email;
     let password = req.body.password;
 
     con.connect(function (err) {
@@ -58,7 +58,7 @@ app.post('/signup', function(req, res) {
         console.log("Connected!");
     });
 
-    let sql = `INSERT INTO users (name, lastName, email, password) VALUES ('${username}', '${lastName}', '${email}', '${password}')`;
+    let sql = `INSERT INTO users (firstName, lastName, email, password) VALUES ('${firstName}', '${lastName}', '${email}', '${password}')`;
     con.query(sql, function (err, result) {
         if (err) throw err;
         res.json({message: "1 record inserted"});
