@@ -6,13 +6,25 @@ const middelware = require('./middelware')
 const app = express()
 const PORT = (process.env.PORT || 3000)
 
-const router = express.Router()
+let responseJson = {
+    executedSuccessfully: false,
+    message: '',
+    status: 0
+}
 
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
 app.use(helmet())
+
+app.get('/', function(req, res) {
+    
+    res.json({
+        message: "Works dude",
+        requestBody: req.body
+    })
+})
 
 app.post('/login', middelware.ensureAuthenticated, function(req, res){
   let auth = req.headers.authorization
@@ -25,6 +37,14 @@ app.post('/login', middelware.ensureAuthenticated, function(req, res){
         pass: password,
         authorization: auth
     })
+})
+
+app.post('/signup', function(req, res) {
+    let username = req.body.name;
+    let lastName = req.body.lastName;
+    let email = req.email.email;
+    let password = req.body.password;
+    
 })
 
 // app.use('/api',)
