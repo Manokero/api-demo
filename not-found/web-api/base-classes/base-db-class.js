@@ -1,4 +1,5 @@
 const mysql = require('mysql')
+
 const DataBaseConfiguration = require('../../config/db.config')
 
 export class BaseDbClass extends mysql {
@@ -9,6 +10,7 @@ export class BaseDbClass extends mysql {
     super()
 
     this.conn = this.createConnection(DataBaseConfiguration)
+
     this.conn.connect(function(err) {
       if (err) {
         console.log(err);
@@ -17,8 +19,13 @@ export class BaseDbClass extends mysql {
     })
   }
 
-  executeQuery(query) {
-
+  insert(query) {
+    return this.conn.query(query, function (err, result) {
+      if(err) {
+        return err
+      }
+      return result
+    })
 
   }
 

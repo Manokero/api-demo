@@ -1,7 +1,10 @@
+const mysql = require('mysql');
 const express = require('express');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
+
 const middelware = require('./middelware')
+const dbConfig = require('../config/db.config')
 
 const app = express()
 const PORT = (process.env.PORT || 3000)
@@ -26,6 +29,9 @@ app.get('/', function(req, res) {
     })
 })
 
+var con = mysql.createConnection(dbConfig);
+
+
 app.post('/login', middelware.ensureAuthenticated, function(req, res){
   let auth = req.headers.authorization
 
@@ -45,6 +51,15 @@ app.post('/signup', function(req, res) {
     let email = req.email.email;
     let password = req.body.password;
 
+    con.connect(function (err) {
+        if (err) throw err;
+        console.log("Connected!");
+        var sql = `INSERT INTO users (name, lastName, email, password) VALUES ('${username}', '${lastName}', '${email}', '${password}')`;
+        con.query(sql, function (err, result) {
+            if (err) throw err;
+            console.log("1 record inserted");
+        });
+    });
 })
 
 
