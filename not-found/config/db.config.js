@@ -1,6 +1,6 @@
-exports = {
+exports.config = {
+    host: 'localhost',
     user: 'root',
     password: '1234',
-    host: 'localhost',
-    database: 'demo-db'
+    database: 'demo'
 }

@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors')
 
 const middelware = require('./middelware')
-const dbConfig = require('../config/db.config')
+const dbConfig = require('../config/db.config');
 
 const app = express()
 const PORT = (process.env.PORT || 3000)
@@ -31,18 +31,18 @@ app.get('/', function(req, res) {
     })
 })
 
-var con = mysql.createConnection(dbConfig);
+var con = mysql.createConnection(dbConfig.config);
 
 
 app.post('/login', middelware.ensureAuthenticated, function(req, res){
   let auth = req.headers.authorization
 
-    let user = req.body.user;
+    let email = req.body.email;
     let password = req.body.password;
 
     res.json({
-        username: user,
-        pass: password,
+        email: email,
+        password: password,
         authorization: auth
     })
 })
