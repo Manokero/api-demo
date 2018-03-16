@@ -2,7 +2,7 @@ const mysql = require('mysql')
 
 const DataBaseConfiguration = require('../../config/db.config')
 
-export class BaseDbClass extends mysql {
+class BaseDbClass extends mysql {
 
   conn = ''
 
@@ -34,3 +34,5 @@ export class BaseDbClass extends mysql {
   }
 
 }
+
+module.exports.BaseDbClass
